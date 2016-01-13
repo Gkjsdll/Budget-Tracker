@@ -120,10 +120,8 @@ $(document).ready(function(){
       }
       $transaction.data('value', Number(amount));
       if(filtering) resetFitler();
-      if(description.toLowerCase().includes("100") && description.toLowerCase().includes("cade")){
-        writeBalance(amount);
-        $mainTable.append($transaction);
-      }
+      writeBalance(amount);
+      $mainTable.append($transaction);
     }
   });
 
