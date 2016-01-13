@@ -11,6 +11,7 @@ $(document).ready(function(){
   var $filterDeposits = $('#filterDeposits');
   var $filterWithdrawls = $('#filterWithdrawls');
   var $filterReset = $('#filterReset');
+  var $mainTBody = $('tbody');
   var filtering = false;
 
   $date.attr('min',moment().format("MM-DD-YYYY"));
@@ -40,10 +41,12 @@ $(document).ready(function(){
   $mainTable.on("click", "button", function(e){
     var $target = $(this).closest('tr');
     writeBalance(-1*$target.data('value'));
+    checkRemainingColors($target.index());
     $target.remove();
   })
 
-  $body.on("click", "img", function(){
+  $body.on("click", "img", function(e){
+    e.stopPropagation()
     $description.val('Cade clicked');
     $date.val(moment().format("YYYY-MM-DD"));
     $amount.val("1.00");
@@ -59,18 +62,12 @@ $(document).ready(function(){
     filtering = false;
   };
 
-  function checkRowColors(){
-
-  }
-
   $addTransaction.click(function(e){
     e.preventDefault();
-    debugger;
     var canProceed = true;
     var $transaction  = $transactionTemplate.clone();
     var amount = +$amount.val();
     var date = moment($date.val());
-    debugger;
     var description = $description.val();
 
     if(!amount){
@@ -80,7 +77,6 @@ $(document).ready(function(){
     else{
       amount = amount.toFixed(2);
     }
-    debugger;
     if (canProceed) {
       if(!date.isValid()){
         swal("Date is invalid","","error");
@@ -94,7 +90,6 @@ $(document).ready(function(){
         swal("Amount cannot be 0");
         canProceed = false;
       }
-      debugger;
       if(canProceed) {
         if(description.length <= 0){
           swal("Description is invalid","","error");
@@ -109,9 +104,7 @@ $(document).ready(function(){
       $description.val('');
       if(description.toLowerCase().includes("100") && description.toLowerCase().includes("cade")) hundredCades();
       $transaction.find('.formTransaction').html(description);
-      debugger;
       $transaction.find('.formDate').html(date.format("MM-DD-YYYY"));
-      debugger;
       if(amount > 0){
         $transaction.find('.formDeposit').html("$"+amount);
         $transaction.find('.formDeposit').css("color", "#00B100");
@@ -123,11 +116,50 @@ $(document).ready(function(){
         $transaction.addClass('withdrawl visible-data');
       }
       $transaction.data('value', Number(amount));
+      $transaction.css("background-color", checkLastColor());
       if(filtering) resetFitler();
       writeBalance(amount);
       $mainTable.append($transaction);
     }
   });
+
+  function checkLastColor(){
+    if($mainTBody.children().filter('.visible-data').last().css("background-color") === "rgb(196, 214, 255)"){
+      return "white";
+    }
+    else{
+      return "rgb(196, 214, 255)";
+    }
+  }
+
+  function checkRemainingColors(index){
+    var $targets = $mainTBody.children();
+    for(var i = index; i < $targets.length; i++){
+      if(i === index){ //set next row's color to be different from previous row's for when current row is removed
+        console.log("First iteration");
+        if(index === 2){ //first visible data
+          $targets.eq(i+1).css("background-color", "rgb(196, 214, 255)");
+        }
+        else{
+          debugger;
+          $targets.eq(i+1).css("background-color", $targets.eq(i).css("background-color"));
+          debugger;
+        }
+        debugger;
+        i++; //prevents recoloring the next element
+        debugger;
+      }
+      else{
+        debugger;
+        if($targets.eq(i-1).css("background-color") === "rgb(196, 214, 255)"){
+          $targets.eq(i).css("background-color", "white");
+        }
+        else{
+          $targets.eq(i).css("background-color", "rgb(196, 214, 255)");
+        }
+      }
+    }
+  };
 
   $('#formToday').text(moment().format("MM-DD-YYYY"));
 

@@ -10,6 +10,7 @@
 
 #template {
   display: none;
+  background-color: white;
 }
 
 tr{
@@ -128,6 +129,7 @@ body {
 #headers {
   font-size: 18px;
   border-bottom: 1px solid grey;
+  display: table-row;
 }
 
 #headers > * {
