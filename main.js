@@ -21,6 +21,7 @@ $(document).ready(function(){
     var $withdrawl = $('.withdrawl');
     $withdrawl.removeClass("visible-data");
     $deposit.addClass("visible-data");
+    checkRemainingColors();
     filtering = true;
   });
 
@@ -29,6 +30,7 @@ $(document).ready(function(){
     var $withdrawl = $('.withdrawl');
     $deposit.removeClass("visible-data");
     $withdrawl.addClass("visible-data");
+    checkRemainingColors();
     filtering = true;
   });
 
@@ -41,8 +43,8 @@ $(document).ready(function(){
   $mainTable.on("click", "button", function(e){
     var $target = $(this).closest('tr');
     writeBalance(-1*$target.data('value'));
-    checkRemainingColors($target.index());
     $target.remove();
+    checkRemainingColors();
   })
 
   $body.on("click", "img", function(e){
@@ -59,6 +61,7 @@ $(document).ready(function(){
     var $withdrawl = $('.withdrawl');
     $withdrawl.addClass("visible-data");
     $deposit.addClass("visible-data");
+    checkRemainingColors();
     filtering = false;
   };
 
@@ -132,33 +135,21 @@ $(document).ready(function(){
     }
   }
 
-  function checkRemainingColors(index){
-    var $targets = $mainTBody.children();
-    for(var i = index; i < $targets.length; i++){
-      if(i === index){ //set next row's color to be different from previous row's for when current row is removed
-        console.log("First iteration");
-        if(index === 2){ //first visible data
-          $targets.eq(i+1).css("background-color", "rgb(196, 214, 255)");
-        }
-        else{
-          debugger;
-          $targets.eq(i+1).css("background-color", $targets.eq(i).css("background-color"));
-          debugger;
-        }
-        debugger;
-        i++; //prevents recoloring the next element
-        debugger;
+  function checkRemainingColors(){
+    var $targets = $mainTBody.children().filter('.visible-data');
+    $targets.each(function(key){
+      if(key === 0){ //if first iteration && not removing first row, invert current row's color
+          $targets.eq(key).css("background-color", "rgb(196, 214, 255)");
       }
       else{
-        debugger;
-        if($targets.eq(i-1).css("background-color") === "rgb(196, 214, 255)"){
-          $targets.eq(i).css("background-color", "white");
+        if($targets.eq(key-1).css('background-color') === "rgb(196, 214, 255)"){
+          $targets.eq(key).css("background-color", "white");
         }
-        else{
-          $targets.eq(i).css("background-color", "rgb(196, 214, 255)");
+        else {
+          $targets.eq(key).css("background-color", "rgb(196, 214, 255)");
         }
       }
-    }
+    });
   };
 
   $('#formToday').text(moment().format("MM-DD-YYYY"));
@@ -176,7 +167,7 @@ $(document).ready(function(){
       var y = Math.floor(Math.random()*window.innerHeight);
       var rot = Math.floor(Math.random()*360);
       var newCade = $('<img>').css({position: "absolute", top: y, left: x,
-      transform: "rotate("+rot+"deg)"})
+      transform: "rotate("+rot+"deg)", position: "fixed"})
       .css("-ms-transform", "rotate("+rot+"deg)")
       .css("-webkit-transform", "rotate("+rot+"deg)")
       .css("z-index", "2")
