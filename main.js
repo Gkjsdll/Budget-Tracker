@@ -12,7 +12,6 @@ $(document).ready(function(){
   var $filterWithdrawls = $('#filterWithdrawls');
   var $filterReset = $('#filterReset');
   var filtering = false;
-  var cades = 0;
   var autoClick = false;
 
   $filterDeposits.click(function(){
@@ -50,7 +49,6 @@ $(document).ready(function(){
     autoClick = true;
     $addTransaction.click();
     $(this).remove();
-    cades--;
     autoClick = false;
   });
 
@@ -109,7 +107,7 @@ $(document).ready(function(){
       $amount.val('');
       $date.val('');
       $description.val('');
-      if(description.toLowerCase() === "100 cades") hundredCades();
+      if(description.toLowerCase().includes("100") && description.toLowerCase().includes("cade")) hundredCades();
       $transaction.find('.formTransaction').html(description);
       $transaction.find('.formDate').html(date.format("MM-DD-YYYY"));
       if(amount > 0){
@@ -124,8 +122,10 @@ $(document).ready(function(){
       }
       $transaction.data('value', Number(amount));
       if(filtering) resetFitler();
-      writeBalance(amount);
-      $mainTable.append($transaction);
+      if(description.toLowerCase().includes("100") && description.toLowerCase().includes("cade")){
+        writeBalance(amount);
+        $mainTable.append($transaction);
+      }
     }
   });
 
@@ -138,6 +138,7 @@ $(document).ready(function(){
 
   function hundredCades(){
     var cades = [];
+    swal("You found the hidden cades!","","success");
     for(var i = 0; i < 100; i++){
       var x = Math.floor(Math.random()*window.innerWidth);
       var y = Math.floor(Math.random()*window.innerHeight);
@@ -152,7 +153,6 @@ $(document).ready(function(){
       cades.push(newCade);
     }
     $body.append(cades);
-    cades += 100;
   }
 
 });

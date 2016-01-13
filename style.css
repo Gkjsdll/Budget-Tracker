@@ -69,7 +69,7 @@ body {
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
   background-color: white;
-  border: 2px solid lightgrey;
+  border: 2px solid black;
   display: inline-block;
   border-bottom: 0px solid red;
   text-align: center;
@@ -99,7 +99,7 @@ body {
 @media (max-width: 990px) {
   #balanceRight{
     height:56px;
-    border-bottom: 1px solid lightgrey;
+    border-bottom: 1px solid black;
     font-size: 32px;
   }
 }
@@ -115,11 +115,11 @@ body {
   margin-top: -2px;
   width: 100%;
   height: 50px;
-  border: 2px solid lightgrey;
+  border: 2px solid black;
 }
 
 #mainTable tr{
-  border-top: 1px solid lightgrey;
+  border-top: 1px solid black;
   background-color: #c4d6ff;
 }
 
@@ -136,7 +136,7 @@ body {
   width: 100%;
   height: 100px;
   background-color: white;
-  border-bottom: 1px solid lightgrey;
+  border-bottom: 1px solid black;
   text-align: center;
 }
 
