@@ -6,31 +6,65 @@ $(document).ready(function(){
   var $description = $('#transactionDesc');
   var $date = $('#transactionDate');
   var $amount = $('#transactionAmount');
-  var $mainTable = $('#mainTable')
+  var $mainTable = $('#mainTable');
   var $body = $('body');
   var $filterDeposits = $('#filterDeposits');
-  var $filterWithrawls = $('#filterWithrawls');
+  var $filterWithdrawls = $('#filterWithdrawls');
   var $filterReset = $('#filterReset');
-  var filtering = null;
+  var filtering = false;
+  var cades = 0;
+  var autoClick = false;
 
   $filterDeposits.click(function(){
-    $('.deposit').removeClass("hidden-data");
-    $('.withdrawl').addClass("hidden-data");
-    filtering = "d";
+    var $deposit = $('.deposit');
+    var $withdrawl = $('.withdrawl');
+    $withdrawl.removeClass("visible-data");
+    $deposit.addClass("visible-data");
+    filtering = true;
   });
 
-  $filterWithrawls.click(function(){
-    $('.withdrawl').removeClass("hidden-data");
-    $('.deposit').addClass("hidden-data");
-    filtering = "w";
+  $filterWithdrawls.click(function(){
+    var $deposit = $('.deposit');
+    var $withdrawl = $('.withdrawl');
+    $deposit.removeClass("visible-data");
+    $withdrawl.addClass("visible-data");
+    filtering = true;
   });
 
-  $filterReset.click(function(){
-    $('.withdrawl').removeClass("hidden-data");
-    $('.deposit').removeClass("hidden-data");
-    filtering = null;
+  $filterReset.click(resetFitler);
+
+  $body.on('dragstart', "img", function(e) {
+    e.preventDefault();
+  });
+
+  $mainTable.on("click", "button", function(e){
+    var $target = $(this).closest('tr');
+    writeBalance(-1*$target.data('value'));
+    $target.remove();
   })
 
+  $body.on("click", "img", function(){
+    $description.val('Cade clicked');
+    $date.val(moment().format("MM-DD-YYYY"));
+    $amount.val("1.00");
+    autoClick = true;
+    $addTransaction.click();
+    $(this).remove();
+    cades--;
+    autoClick = false;
+  });
+
+  function resetFitler(){
+    var $deposit = $('.deposit');
+    var $withdrawl = $('.withdrawl');
+    $withdrawl.addClass("visible-data");
+    $deposit.addClass("visible-data");
+    filtering = false;
+  };
+
+  function checkRowColors(){
+
+  }
 
   $addTransaction.click(function(e){
     e.preventDefault();
@@ -48,12 +82,14 @@ $(document).ready(function(){
     else{
       amount = amount.toFixed(2);
     }
+    console.log(moment().format("MM-DD-YYYY"));
+    console.log(date.format("MM-DD-YYYY"));
     if (canProceed) {
-      if(!date.isValid()){
+      if(!date.isValid() && !autoClick){
         swal("Date is invalid","","error");
         canProceed = false;
       }
-      else if(moment().format("x") > date.format("x")){
+      else if(moment().diff(date) > 0 && !autoClick){
         swal("Date is invalid", "", "error");
         canProceed = false;
       }
@@ -78,23 +114,25 @@ $(document).ready(function(){
       $transaction.find('.formDate').html(date.format("MM-DD-YYYY"));
       if(amount > 0){
         $transaction.find('.formDeposit').html("$"+amount);
-        $transaction.addClass('deposit');
+        $transaction.find('.formDeposit').css("color", "green");
+        $transaction.addClass('deposit visible-data');
       }
       else{
         $transaction.find('.formWithdrawl').html("$"+amount);
-        $transaction.addClass('withdrawl');
+        $transaction.find('.formWithdrawl').css("color", "red");
+        $transaction.addClass('withdrawl visible-data');
       }
+      $transaction.data('value', Number(amount));
+      if(filtering) resetFitler();
       writeBalance(amount);
       $mainTable.append($transaction);
     }
-
-
   });
 
   $('#formToday').text(moment().format("MM-DD-YYYY"));
 
   function writeBalance(diff){
-    balance += +diff;
+    balance += Math.round(diff*100)/100; //I couldn't use Number(), parseInt(), or +|number| to convert back from .toFixed()
     $balance.text("$"+balance);
   }
 
@@ -113,6 +151,7 @@ $(document).ready(function(){
       cades.push(newCade);
     }
     $body.append(cades);
+    cades += 100;
   }
 
 });

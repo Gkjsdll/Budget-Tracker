@@ -8,16 +8,20 @@
   cursor: default;
 }
 
-.hidden-data, #template {
+#template {
   display: none;
 }
 
-.formDeposit {
-  color: green;
+tr{
+  display: none;
 }
 
-.formWithdrawl {
-  color: red;
+.visible-data {
+  display: table-row;
+}
+
+#initialDeposit {
+  color: green;
 }
 
 /*Hides number spinner in Non-Firefox browsers*/
@@ -114,7 +118,8 @@ body {
   border: 2px solid lightgrey;
 }
 
-#mainTable tr:not(.non-data):nth-child(odd){
+#mainTable tr{
+  border-top: 1px solid lightgrey;
   background-color: #c4d6ff;
 }
 
@@ -166,4 +171,17 @@ body {
 
 input:active, input:focus {
     outline: 0px;
+}
+
+.glyphicon {
+  border: 0px solid red;
+  background-color: #3557a0;
+  border-radius: 4px;
+  color: white;
+  text-align: center;
+  padding: 4px 5px 4px 4px;
+}
+
+.glyphicon:focus, .glyphicon:active {
+  outline: 0px;
 }

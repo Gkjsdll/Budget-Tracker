@@ -41,22 +41,25 @@
       <div class="col-xs-12 col-md-4" id="balanceRight"><p>$1000.00</p></div>
       <table class="col-xs-12"id='mainTable'>
         <tr id="template" class="hidden-data">
-          <td class="formTransaction">-</td>
-          <td class="formDate">-</td>
-          <td class="formDeposit">-</td>
-          <td class="formWithdrawl">-</td>
+          <td class="formTransaction">–</td>
+          <td class="formDate">–</td>
+          <td class="formDeposit">–</td>
+          <td class="formWithdrawl">–</td>
+          <td class="formDelete"><button class="glyphicon glyphicon-trash"></button></td>
         </tr>
-        <tr id="headers" class="non-data">
+        <tr id="headers" class="visible-data">
           <td>Transaction</td>
           <td>Date</td>
           <td>Deposits</td>
           <td>Withdrawls</td>
+          <td>Remove</td>
         </tr>
-        <tr>
+        <tr class="deposit visible-data" data-value="1000.00">
           <td class="formTransactiion">Initial deposit</td>
           <td class="formDate" id="formToday">Javascript encountered a syntax error</td>
-          <td class="formDeposit">$1,000.00</td>
-          <td class="formWithdrawl">-</td>
+          <td class="formDeposit" id="initialDeposit">$1,000.00</td>
+          <td class="formWithdrawl">–</td>
+          <td class="formDelete"><button class="glyphicon glyphicon-trash"></button></td>
         </tr>
       </table>
     </div>
