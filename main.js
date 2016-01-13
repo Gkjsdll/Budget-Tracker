@@ -9,7 +9,7 @@ $(document).ready(function(){
   var $mainTable = $('#mainTable');
   var $body = $('body');
   var $filterDeposits = $('#filterDeposits');
-  var $filterWithdrawls = $('#filterWithdrawls');
+  var $filterWithdrawals = $('#filterWithdrawals');
   var $filterReset = $('#filterReset');
   var $mainTBody = $('tbody');
   var filtering = false;
@@ -18,18 +18,18 @@ $(document).ready(function(){
 
   $filterDeposits.click(function(){
     var $deposit = $('.deposit');
-    var $withdrawl = $('.withdrawl');
-    $withdrawl.removeClass("visible-data");
+    var $withdrawal = $('.withdrawal');
+    $withdrawal.removeClass("visible-data");
     $deposit.addClass("visible-data");
     checkRemainingColors();
     filtering = true;
   });
 
-  $filterWithdrawls.click(function(){
+  $filterWithdrawals.click(function(){
     var $deposit = $('.deposit');
-    var $withdrawl = $('.withdrawl');
+    var $withdrawal = $('.withdrawal');
     $deposit.removeClass("visible-data");
-    $withdrawl.addClass("visible-data");
+    $withdrawal.addClass("visible-data");
     checkRemainingColors();
     filtering = true;
   });
@@ -58,8 +58,8 @@ $(document).ready(function(){
 
   function resetFitler(){
     var $deposit = $('.deposit');
-    var $withdrawl = $('.withdrawl');
-    $withdrawl.addClass("visible-data");
+    var $withdrawal = $('.withdrawal');
+    $withdrawal.addClass("visible-data");
     $deposit.addClass("visible-data");
     checkRemainingColors();
     $('img').click(); //Clears all Cades from the screen
@@ -115,9 +115,9 @@ $(document).ready(function(){
         $transaction.addClass('deposit visible-data');
       }
       else{
-        $transaction.find('.formWithdrawl').html("$"+amount);
-        $transaction.find('.formWithdrawl').css("color", "red");
-        $transaction.addClass('withdrawl visible-data');
+        $transaction.find('.formWithdrawal').html("$"+amount);
+        $transaction.find('.formWithdrawal').css("color", "red");
+        $transaction.addClass('withdrawal visible-data');
       }
       $transaction.data('value', Number(amount));
       $transaction.css("background-color", checkLastColor());
