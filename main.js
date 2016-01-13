@@ -22,6 +22,7 @@ $(document).ready(function(){
     $withdrawl.removeClass("visible-data");
     $deposit.addClass("visible-data");
     checkRemainingColors();
+    $('img').click(); //Clears all Cades from the screen
     filtering = true;
   });
 
