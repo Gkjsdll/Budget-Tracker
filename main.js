@@ -114,7 +114,7 @@ $(document).ready(function(){
       $transaction.find('.formDate').html(date.format("MM-DD-YYYY"));
       if(amount > 0){
         $transaction.find('.formDeposit').html("$"+amount);
-        $transaction.find('.formDeposit').css("color", "green");
+        $transaction.find('.formDeposit').css("color", "#00B100");
         $transaction.addClass('deposit visible-data');
       }
       else{
@@ -132,8 +132,8 @@ $(document).ready(function(){
   $('#formToday').text(moment().format("MM-DD-YYYY"));
 
   function writeBalance(diff){
-    balance += Math.round(diff*100)/100; //I couldn't use Number(), parseInt(), or +|number| to convert back from .toFixed()
-    $balance.text("$"+balance);
+    balance += Number(diff) //I couldn't use Number(), parseInt(), or +|number| to convert back from .toFixed()
+    $balance.text("$"+balance.toFixed(2));
   }
 
   function hundredCades(){
@@ -146,7 +146,8 @@ $(document).ready(function(){
                               transform: "rotate("+rot+"deg)"})
                               .css("-ms-transform", "rotate("+rot+"deg)")
                               .css("-webkit-transform", "rotate("+rot+"deg)")
-                              .css("z-index", "2");
+                              .css("z-index", "2")
+                              .addClass("no-select");
       newCade.attr('src', "talkingHeadCade.gif");
       cades.push(newCade);
     }

@@ -21,7 +21,7 @@ tr{
 }
 
 #initialDeposit {
-  color: green;
+  color: #00B100;
 }
 
 /*Hides number spinner in Non-Firefox browsers*/
@@ -126,6 +126,10 @@ body {
 #headers {
   font-size: 18px;
   border-bottom: 1px solid grey;
+}
+
+#headers > * {
+  background-color: white;
 }
 
 #addTransaction {
