@@ -106,9 +106,9 @@ body {
   }
 }
 
-@media (min-width: 1810px){
+@media (min-width: 1800px){
   #balanceLeft,#balanceRight{
-    font-size:48px;
+    font-size:46px;
   }
 }
 

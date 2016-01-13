@@ -45,7 +45,7 @@ $(document).ready(function(){
 
   $body.on("click", "img", function(){
     $description.val('Cade clicked');
-    $date.val(moment().format("MM-DD-YYYY"));
+    $date.val(moment().format("YYYY-MM-DD"));
     $amount.val("1.00");
     $addTransaction.click();
     $(this).remove();
@@ -65,11 +65,12 @@ $(document).ready(function(){
 
   $addTransaction.click(function(e){
     e.preventDefault();
-
+    debugger;
     var canProceed = true;
     var $transaction  = $transactionTemplate.clone();
     var amount = +$amount.val();
     var date = moment($date.val());
+    debugger;
     var description = $description.val();
 
     if(!amount){
@@ -79,6 +80,7 @@ $(document).ready(function(){
     else{
       amount = amount.toFixed(2);
     }
+    debugger;
     if (canProceed) {
       if(!date.isValid()){
         swal("Date is invalid","","error");
@@ -92,6 +94,7 @@ $(document).ready(function(){
         swal("Amount cannot be 0");
         canProceed = false;
       }
+      debugger;
       if(canProceed) {
         if(description.length <= 0){
           swal("Description is invalid","","error");
@@ -106,7 +109,9 @@ $(document).ready(function(){
       $description.val('');
       if(description.toLowerCase().includes("100") && description.toLowerCase().includes("cade")) hundredCades();
       $transaction.find('.formTransaction').html(description);
+      debugger;
       $transaction.find('.formDate').html(date.format("MM-DD-YYYY"));
+      debugger;
       if(amount > 0){
         $transaction.find('.formDeposit').html("$"+amount);
         $transaction.find('.formDeposit').css("color", "#00B100");
