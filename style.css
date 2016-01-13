@@ -74,7 +74,7 @@ body {
   border-bottom: 0px solid red;
   text-align: center;
   z-index: 1;
-    line-height: 64px;
+  line-height: 64px;
 }
 
 #balanceLeft p, #balanceRight p{
@@ -174,7 +174,7 @@ body {
 }
 
 input:active, input:focus {
-    outline: 0px;
+  outline: 0px;
 }
 
 .glyphicon {

@@ -80,8 +80,6 @@ $(document).ready(function(){
     else{
       amount = amount.toFixed(2);
     }
-    console.log(moment().format("MM-DD-YYYY"));
-    console.log(date.format("MM-DD-YYYY"));
     if (canProceed) {
       if(!date.isValid() && !autoClick){
         swal("Date is invalid","","error");
@@ -144,11 +142,11 @@ $(document).ready(function(){
       var y = Math.floor(Math.random()*window.innerHeight);
       var rot = Math.floor(Math.random()*360);
       var newCade = $('<img>').css({position: "absolute", top: y, left: x,
-                              transform: "rotate("+rot+"deg)"})
-                              .css("-ms-transform", "rotate("+rot+"deg)")
-                              .css("-webkit-transform", "rotate("+rot+"deg)")
-                              .css("z-index", "2")
-                              .addClass("no-select");
+      transform: "rotate("+rot+"deg)"})
+      .css("-ms-transform", "rotate("+rot+"deg)")
+      .css("-webkit-transform", "rotate("+rot+"deg)")
+      .css("z-index", "2")
+      .addClass("no-select");
       newCade.attr('src', "talkingHeadCade.gif");
       cades.push(newCade);
     }
