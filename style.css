@@ -8,6 +8,18 @@
   cursor: default;
 }
 
+.hidden-data, #template {
+  display: none;
+}
+
+.formDeposit {
+  color: green;
+}
+
+.formWithdrawl {
+  color: red;
+}
+
 /*Hides number spinner in Non-Firefox browsers*/
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
@@ -24,10 +36,6 @@ body {
   background-color: #3a60b2;
   font-family: 'Slabo 27px', serif;
   text-align: center;
-}
-
-#template{
-  display: none;
 }
 
 #transactionDesc{
@@ -106,7 +114,7 @@ body {
   border: 2px solid lightgrey;
 }
 
-#mainTable tr:nth-child(odd){
+#mainTable tr:not(.non-data):nth-child(odd){
   background-color: #c4d6ff;
 }
 
