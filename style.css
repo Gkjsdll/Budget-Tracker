@@ -26,13 +26,15 @@ tr{
 
 /*Hides number spinner in Non-Firefox browsers*/
 input[type=number]::-webkit-outer-spin-button,
-input[type=number]::-webkit-inner-spin-button {
+input[type=number]::-webkit-inner-spin-button,
+input[type=date]::-webkit-outer-spin-button,
+input[type=date]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
 /*Hides number spinner in Firefox*/
-input[type=number] {
+input[type=number], input[type=date] {
   -moz-appearance:textfield;
 }
 
@@ -48,7 +50,7 @@ body {
 }
 
 #transactionDate{
-  width: 96px;
+  width: 120px;
   margin-right: 16px;
 }
 

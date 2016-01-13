@@ -12,7 +12,8 @@ $(document).ready(function(){
   var $filterWithdrawls = $('#filterWithdrawls');
   var $filterReset = $('#filterReset');
   var filtering = false;
-  var autoClick = false;
+
+  $date.attr('min',moment().format("MM-DD-YYYY"));
 
   $filterDeposits.click(function(){
     var $deposit = $('.deposit');
@@ -46,10 +47,8 @@ $(document).ready(function(){
     $description.val('Cade clicked');
     $date.val(moment().format("MM-DD-YYYY"));
     $amount.val("1.00");
-    autoClick = true;
     $addTransaction.click();
     $(this).remove();
-    autoClick = false;
   });
 
   function resetFitler(){
@@ -81,13 +80,13 @@ $(document).ready(function(){
       amount = amount.toFixed(2);
     }
     if (canProceed) {
-      if(!date.isValid() && !autoClick){
+      if(!date.isValid()){
         swal("Date is invalid","","error");
         canProceed = false;
       }
-      else if(moment().diff(date) > 0 && !autoClick){
-        swal("Date is invalid", "", "error");
-        canProceed = false;
+      else if(moment().diff(date) > 0 && date.format("MM-DD-YYYY") !== moment().format("MM-DD-YYYY")){
+          swal("Date cannot be the past", "", "error");
+          canProceed = false;
       }
       else if(+amount === 0.00){
         swal("Amount cannot be 0");
