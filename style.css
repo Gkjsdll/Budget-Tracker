@@ -1,0 +1,134 @@
+body {
+  background-color: #3a60b2;
+  font-family: 'Slabo 27px', serif;
+  text-align: center;
+}
+
+#transactionDesc{
+  width: 156px;
+}
+
+#transactionDate{
+  width: 96px;
+  margin-right: 24px;
+}
+
+#transactionAmount{
+  width: 72px;
+}
+
+.container, .header{
+  min-width: 768px;
+}
+
+#balanceLeft, #balanceRight {
+  text-align: center;
+  font-size: 36px;
+  font-size: 3vw;
+  height: 72px;
+  margin-top: 48px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  background-color: white;
+  border: 2px solid lightgrey;
+  display: inline-block;
+  border-bottom: 0px solid red;
+  text-align: center;
+  z-index: 1;
+    line-height: 64px;
+}
+
+#balanceLeft p, #balanceRight p{
+  margin: auto;
+  text-align: center;
+  height: 72px;
+  vertical-align: middle;
+}
+
+@media (min-width: 990px) {
+  #balanceRight{
+    border-top-left-radius: 0px;
+    border-left: 0px;
+    border-left: 0px solid red;
+  }
+  #balanceLeft{
+    border-top-right-radius: 0px;
+    border-right: 0px solid red;
+  }
+}
+
+@media (max-width: 990px) {
+  #balanceRight{
+    height:56px;
+    border-bottom: 1px solid lightgrey;
+    font-size: 32px;
+  }
+}
+
+@media (min-width: 1810px){
+  #balanceLeft,#balanceRight{
+    font-size:48px;
+  }
+}
+
+#mainTable {
+  background-color: white;
+  margin-top: -2px;
+  width: 100%;
+  height: 50px;
+  border: 2px solid lightgrey;
+}
+
+#mainTable tr:nth-child(even){
+  background-color: #c4d6ff;
+}
+
+#headers {
+  font-size: 18px;
+  border-bottom: 1px solid grey;
+}
+
+#addTransaction {
+  width: 100%;
+  height: 100px;
+  background-color: white;
+  border-bottom: 1px solid lightgrey;
+  text-align: center;
+}
+
+#addTransaction > * {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  padding-top: 32px
+}
+
+#addTransaction > form > p {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  padding-top: 12px;
+}
+
+#addTransaction > p {
+  font-size: 24px;
+  padding-top: 42px;
+  padding-right: 12px;
+}
+
+#transactionSubmit{
+  border-radius: 3px;
+  border: 0px;
+  background-color: #3a60b2;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+#transactionSubmit:active, #transactionSubmit:focus{
+  outline: 0px;
+  background-color: #3557a0;
+}
+
+input:active, input:focus {
+    outline: 0px;
+}

@@ -3,10 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <title>Finance History</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="header">
+    <div id="addTransaction">
+      <p>Add Transaction –</p>
+      <form>
+        <p>Date:</p>
+        <input type="text" id="transactionDate" placeholder="MM-DD-YYYY" required>
+        <p>Amount: </p>
+        <input type="text" id="transactionAmount" type="number" placeholder="0000.00" step="0.01">
+        <input type="text" id="transactionDesc" placeholder="Description... (optional)">
+        <button id="transactionSubmit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="container" id="mainContainer">
+    <div class="row" id="mainRow">
+      <div class="hidden-xs hidden-sm col-md-4 col-md-offset-2"  id="balanceLeft"><p>Current Balance:</p></div>
+      <div class="col-xs-12 col-md-4" id="balanceRight"><p>$1000.00</p></div>
+      <table class="col-xs-12"id='mainTable'>
+        <tr id="headers">
+          <td>Transaction</td>
+          <td>Other Party</td>
+          <td>Date</td>
+          <td>Deposits</td>
+          <td>Withdrawls</td>
+        </tr>
+        <tr id="template">
+          <td class="formTransactiion">Filler</td>
+          <td class="formName">Filler</td>
+          <td class="formDate">Filler</td>
+          <td class="formDeposit">Filler</td>
+          <td class="formWithdrawl">Filler</td>
+        </tr>
+        <tr>
+          <td class="formTransactiion">Initial deposit</td>
+          <td class="formName">none</td>
+          <td class="formDate" id="formToday"></td>
+          <td class="formDeposit">$1,000.00</td>
+          <td class="formWithdrawl">-</td>
+        </tr>
+      </table>
+    </div>
+  </div>
   <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script src="main.js"></script>
 </body>
 </html>
