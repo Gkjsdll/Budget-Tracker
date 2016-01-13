@@ -1,16 +1,43 @@
+.no-select {  /*Prevents the user from selecting text*/
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+
+/*Hides number spinner in Non-Firefox browsers*/
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/*Hides number spinner in Firefox*/
+input[type=number] {
+  -moz-appearance:textfield;
+}
+
 body {
   background-color: #3a60b2;
   font-family: 'Slabo 27px', serif;
   text-align: center;
 }
 
+#template{
+  display: none;
+}
+
 #transactionDesc{
   width: 156px;
+  margin-right: 16px;
 }
 
 #transactionDate{
   width: 96px;
-  margin-right: 24px;
+  margin-right: 16px;
 }
 
 #transactionAmount{
@@ -79,7 +106,7 @@ body {
   border: 2px solid lightgrey;
 }
 
-#mainTable tr:nth-child(even){
+#mainTable tr:nth-child(odd){
   background-color: #c4d6ff;
 }
 
